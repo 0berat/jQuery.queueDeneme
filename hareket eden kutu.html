@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            margin: 3px;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 0px;
+            top: 30px;
+            background: red;
+            display:none;
+        }
+        div.newcolor {
+            background: blue;
+        }
+        span{
+            color:red;
+        }
+    </style>
+    <script src="jquery-3.5.1.min.js"></script>
+</head>
+<body>
+<button id="show">Küpün boyunu söyle</button>
+<span></span>
+<div></div>
+<script>
+$("#show").click(function () {
+    var move = jQuery.queue($("div")[0],"fx");   // Burada ne yaptık tam olarak anlayamadım.Araştırıcılak
+    $("span").text("Sıranın uzunluğu?;"+ move.length);
+});
+
+function runit() {
+    $("div")
+    .show("slow")
+    .animate({
+        left: "+=200"
+    },2000 )
+    .slideToggle(1000)
+    .slideToggle("fast")
+        .animate({
+            left:"-=200"
+        },1500)
+        .hide("slow")
+        .slideUp("normal",runit);
+}
+runit();
+
+</script>
+</body>
+</html>
